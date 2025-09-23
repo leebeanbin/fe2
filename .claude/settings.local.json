@@ -3,7 +3,8 @@
     "allow": [
       "Bash(pnpm create:*)",
       "Bash(rm:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Read(//Users/leejungbin/Downloads/FE/src/**)"
     ],
     "deny": [],
     "ask": []

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Sidebar from '@/components/Sidebar';
 import ChatGrid from '@/components/ChatGrid';
 
@@ -13,18 +13,12 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className={`grid-layout ${sidebarOpen ? '' : 'sidebar-collapsed'}`}>
       <AnimatePresence mode="wait">
-        <Sidebar
-          isOpen={sidebarOpen}
-          onToggle={toggleSidebar}
-        />
+        <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
       </AnimatePresence>
 
-      <ChatGrid
-        sidebarOpen={sidebarOpen}
-        onToggleSidebar={toggleSidebar}
-      />
+      <ChatGrid onToggleSidebar={toggleSidebar} />
     </div>
   );
 }

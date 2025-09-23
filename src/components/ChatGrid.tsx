@@ -16,24 +16,24 @@ interface Message {
 }
 
 interface ChatGridProps {
-  sidebarOpen: boolean;
   onToggleSidebar: () => void;
 }
 
-export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps) {
+export default function ChatGrid({ onToggleSidebar }: ChatGridProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
       role: 'user',
       content: 'ChatGPT 스타일의 정교한 그리드 레이아웃을 만들어주세요.',
-      timestamp: '오후 2:30'
+      timestamp: '오후 2:30',
     },
     {
       id: 2,
       role: 'assistant',
-      content: 'ChatGPT 스타일의 정교한 그리드 레이아웃을 구현해드리겠습니다. 반응형 디자인과 부드러운 애니메이션을 포함하여 현대적인 UI를 만들어보겠습니다.',
-      timestamp: '오후 2:31'
-    }
+      content:
+        'ChatGPT 스타일의 정교한 그리드 레이아웃을 구현해드리겠습니다. 반응형 디자인과 부드러운 애니메이션을 포함하여 현대적인 UI를 만들어보겠습니다.',
+      timestamp: '오후 2:31',
+    },
   ]);
 
   const [inputValue, setInputValue] = useState('');
@@ -46,8 +46,8 @@ export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps
         content: inputValue,
         timestamp: new Date().toLocaleTimeString('ko-KR', {
           hour: '2-digit',
-          minute: '2-digit'
-        })
+          minute: '2-digit',
+        }),
       };
 
       setMessages([...messages, newMessage]);
@@ -61,8 +61,8 @@ export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps
           content: '좋은 질문이네요! 그에 대한 답변을 준비하겠습니다.',
           timestamp: new Date().toLocaleTimeString('ko-KR', {
             hour: '2-digit',
-            minute: '2-digit'
-          })
+            minute: '2-digit',
+          }),
         };
         setMessages(prev => [...prev, aiResponse]);
       }, 1500);
@@ -70,7 +70,7 @@ export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps
   };
 
   return (
-    <div className="flex-1 flex flex-col h-screen bg-white">
+    <div className="content-area">
       {/* 헤더 */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
@@ -93,8 +93,18 @@ export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps
             whileTap={{ scale: 0.95 }}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+            <svg
+              className="w-5 h-5 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+              />
             </svg>
           </motion.button>
         </div>
@@ -120,7 +130,9 @@ export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps
                       </div>
                     )}
 
-                    <div className={`group relative ${message.role === 'user' ? 'order-1' : ''}`}>
+                    <div
+                      className={`group relative ${message.role === 'user' ? 'order-1' : ''}`}
+                    >
                       <div
                         className={`px-4 py-3 rounded-2xl ${
                           message.role === 'user'
@@ -133,22 +145,30 @@ export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps
                         </p>
                       </div>
 
-                      <div className={`text-xs text-gray-500 mt-1 ${
-                        message.role === 'user' ? 'text-right' : 'text-left'
-                      }`}>
+                      <div
+                        className={`text-xs text-gray-500 mt-1 ${
+                          message.role === 'user' ? 'text-right' : 'text-left'
+                        }`}
+                      >
                         {message.timestamp}
                       </div>
 
                       {/* 호버 액션 */}
-                      <div className={`absolute top-0 opacity-0 group-hover:opacity-100 transition-opacity ${
-                        message.role === 'user' ? '-left-10' : '-right-10'
-                      }`}>
+                      <div
+                        className={`absolute top-0 opacity-0 group-hover:opacity-100 transition-opacity ${
+                          message.role === 'user' ? '-left-10' : '-right-10'
+                        }`}
+                      >
                         <div className="flex gap-1">
                           <motion.button
                             whileHover={{ scale: 1.1 }}
                             className="p-1 rounded-full bg-white shadow-md hover:bg-gray-50 transition-colors"
                           >
-                            <CopyIcon onCopy={() => navigator.clipboard.writeText(message.content)} />
+                            <CopyIcon
+                              onCopy={() =>
+                                navigator.clipboard.writeText(message.content)
+                              }
+                            />
                           </motion.button>
                         </div>
                       </div>
@@ -179,8 +199,8 @@ export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps
             <div className="flex items-end gap-3 p-3 bg-gray-50 rounded-2xl border border-gray-200 focus-within:border-blue-500 transition-colors">
               <textarea
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={(e) => {
+                onChange={e => setInputValue(e.target.value)}
+                onKeyDown={e => {
                   if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
                     handleSendMessage();
@@ -193,7 +213,7 @@ export default function ChatGrid({ sidebarOpen, onToggleSidebar }: ChatGridProps
                   height: 'auto',
                   minHeight: '24px',
                 }}
-                onInput={(e) => {
+                onInput={e => {
                   const target = e.target as HTMLTextAreaElement;
                   target.style.height = 'auto';
                   target.style.height = target.scrollHeight + 'px';
