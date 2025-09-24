@@ -14,9 +14,14 @@ import Logo from './Logo';
 interface SidebarProps {
   isOpen: boolean;
   onToggle: () => void;
+  onOpenSearchModal?: () => void;
 }
 
-export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
+export default function Sidebar({
+  isOpen,
+  onToggle,
+  onOpenSearchModal,
+}: SidebarProps) {
   const [conversations] = useState([
     {
       id: 1,
@@ -109,18 +114,20 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
               </motion.button>
             </div>
 
-            {isOpen && (
-              <motion.a
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.2 }}
-                href="#"
-                className="sidebar_search"
-              >
-                <SearchIcon className="sidebar_search_icon" size={18} />
-                <span>기사 히스토리 검색</span>
-              </motion.a>
-            )}
+            <motion.a
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
+              href="#"
+              className="sidebar_search"
+              onClick={e => {
+                e.preventDefault();
+                onOpenSearchModal?.();
+              }}
+            >
+              <SearchIcon className="sidebar_search_icon" size={18} />
+              {isOpen && <span>기사 히스토리 검색</span>}
+            </motion.a>
           </div>
 
           {/* 메뉴 */}

@@ -4,7 +4,11 @@
       "Bash(pnpm create:*)",
       "Bash(rm:*)",
       "Bash(pnpm build:*)",
-      "Read(//Users/leejungbin/Downloads/FE/src/**)"
+      "Read(//Users/leejungbin/Downloads/FE/src/**)",
+      "Bash(lsof:*)",
+      "Bash(npm run dev:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
