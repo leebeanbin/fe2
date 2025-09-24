@@ -1641,6 +1641,7 @@ button {
   overflow-x: visible; /* 드롭다운이 보이도록 */
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding-right: 6px; /* 오른쪽 패딩 추가 */
 }
 
 .sidebar_nav::-webkit-scrollbar {
@@ -2003,6 +2004,7 @@ button {
   margin: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 16px;
+  padding-right: 6px; /* 오른쪽 패딩 추가 */
 }
 
 .sidebar_bott > li > a {
