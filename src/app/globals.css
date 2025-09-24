@@ -1712,7 +1712,7 @@ button {
   grid-template-areas: 'icon text';
   gap: 12px;
   align-items: center;
-  padding: 12px 16px;
+  padding: 0 18px; /* 검색 버튼과 동일한 좌우 패딩 */
   border-radius: 10px;
   color: var(--txt-gray01);
   text-decoration: none;
@@ -1998,7 +1998,7 @@ button {
   grid-template-columns: 24px 1fr; /* 통일된 아이콘 영역 크기 */
   gap: 12px;
   align-items: center;
-  padding: 12px 16px; /* 패딩 통일 */
+  padding: 0 18px; /* 검색 버튼과 동일한 좌우 패딩 */
   border-radius: 10px; /* 둥근 모서리 통일 */
   color: var(--txt-gray01);
   text-decoration: none;
@@ -2038,7 +2038,7 @@ button {
 .sidebar-area.collapsed .sidebar_bott > li > a {
   grid-template-columns: 1fr;
   justify-items: center;
-  padding: 12px 8px;
+  padding: 0; /* 접힌 상태에서는 패딩 제거 */
 }
 
 .sidebar-area.collapsed .sidebar_ico {
