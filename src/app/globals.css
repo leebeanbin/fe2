@@ -1546,6 +1546,8 @@ button {
 .sidebar_search_icon {
   color: #ffffff;
   flex-shrink: 0;
+  width: 20px; /* 다른 아이콘과 동일한 크기 */
+  height: 20px; /* 다른 아이콘과 동일한 크기 */
 }
 
 /* 드롭다운 메뉴 스타일 */
