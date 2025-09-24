@@ -231,8 +231,8 @@ button {
 }
 
 .sidebar-area.collapsed .sidebar_ico_wrapper {
-  width: 32px; /* 크기 조정 */
-  height: 32px;
+  width: 24px; /* 통일된 크기 */
+  height: 24px; /* 통일된 크기 */
   justify-content: center;
   justify-self: center;
 }
@@ -243,11 +243,11 @@ button {
 
 /* 접힌 상태 검색 버튼 */
 .sidebar-area.collapsed .sidebar_search {
-  width: 48px;
-  height: 48px;
+  width: 48px; /* 통일된 크기 */
+  height: 48px; /* 통일된 크기 */
   padding: 0;
   justify-content: center;
-  border-radius: 8px; /* 더 작은 둥근 모서리 */
+  border-radius: 10px; /* 통일된 둥근 모서리 */
   background: var(--main-violet); /* 단색 배경으로 변경 */
 }
 
@@ -1474,6 +1474,7 @@ button {
   gap: 20px;
   height: 100%;
   padding: 16px 12px;
+  overflow: visible; /* 드롭다운이 보이도록 */
 }
 
 /* 상단 영역 그리드 */
@@ -1522,19 +1523,19 @@ button {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  height: 56px; /* 높이 더 증가 */
+  height: 48px; /* 다른 메뉴와 통일된 높이 */
   padding: 0 18px;
   background: linear-gradient(
     135deg,
     var(--main-violet) 0%,
     var(--sub-violet) 100%
   );
-  border-radius: 12px;
+  border-radius: 10px; /* 통일된 둥근 모서리 */
   color: #fff;
   text-decoration: none;
   transition: all 0.2s ease;
   font-weight: 600;
-  font-size: 17px; /* 폰트 크기 더 증가 */
+  font-size: 15px; /* 통일된 폰트 크기 */
 }
 
 .sidebar_search:hover {
@@ -1582,7 +1583,7 @@ button {
   position: absolute;
   top: 100%;
   right: 0;
-  z-index: 50;
+  z-index: 100; /* 더 높은 z-index로 설정 */
   min-width: 140px;
   background: var(--sidebar-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1630,6 +1631,7 @@ button {
   grid-template-rows: auto 1fr;
   gap: 20px;
   overflow-y: auto;
+  overflow-x: visible; /* 드롭다운이 보이도록 */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -1675,17 +1677,18 @@ button {
   grid-area: icon;
   display: flex;
   align-items: center; /* 수직 중앙 정렬 */
-  justify-content: flex-start; /* 왼쪽 정렬로 변경 */
-  width: 40px; /* 그리드 컬럼과 동일한 크기 */
-  height: 100%; /* 부모 높이에 맞춤 */
+  justify-content: center; /* 중앙 정렬로 통일 */
+  width: 24px; /* 통일된 크기 */
+  height: 24px; /* 통일된 크기 */
   position: relative;
+  flex-shrink: 0; /* 축소 방지 */
 }
 
 .sidebar_ico {
   color: var(--txt-gray01);
   transition: color 0.2s ease;
   flex-shrink: 0;
-  /* 아이콘 크기를 그리드 내부에 맞게 조정 */
+  /* 아이콘 크기를 통일 */
   width: 20px;
   height: 20px;
   display: block; /* inline 요소로 인한 겹침 방지 */
@@ -1789,6 +1792,7 @@ button {
   grid-template-rows: auto 1fr;
   gap: 16px;
   overflow-y: auto;
+  overflow-x: visible; /* 드롭다운이 보이도록 */
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   scrollbar-width: none;
@@ -1814,7 +1818,7 @@ button {
   padding: 0;
   margin: 0;
   width: 100%;
-  overflow: hidden; /* 넘치는 내용 숨김 */
+  overflow: visible; /* 드롭다운이 보이도록 */
 }
 
 /* 히스토리 아이템 - 정교한 그리드 */
@@ -1831,7 +1835,7 @@ button {
   width: 100%;
   box-sizing: border-box;
   min-width: 0; /* 그리드 아이템이 축소될 수 있도록 */
-  overflow: hidden; /* 넘치는 내용 숨김 */
+  overflow: visible; /* 드롭다운 메뉴가 보이도록 변경 */
   max-width: calc(
     var(--sidebar-width) - 24px
   ); /* 사이드바 너비에서 패딩 제외 */
@@ -1849,7 +1853,7 @@ button {
   padding: 0; /* 패딩 제거하여 그리드 내에서 정확한 배치 */
   border-radius: 0; /* 둥근 모서리 제거 */
   transition: none; /* 호버 효과는 부모에서 처리 */
-  overflow: hidden; /* 넘치는 내용 숨김 */
+  overflow: hidden; /* 텍스트 오버플로우만 숨김 */
   min-width: 0; /* 축소 가능하도록 */
 }
 
@@ -1863,7 +1867,7 @@ button {
   gap: 6px;
   min-width: 0;
   width: 100%; /* 전체 너비 사용 */
-  overflow: hidden; /* 넘치는 내용 숨김 */
+  overflow: hidden; /* 텍스트 오버플로우만 숨김 */
 }
 
 .history-title-row {
@@ -1991,17 +1995,17 @@ button {
 
 .sidebar_bott > li > a {
   display: grid;
-  grid-template-columns: 24px 1fr;
+  grid-template-columns: 24px 1fr; /* 통일된 아이콘 영역 크기 */
   gap: 12px;
   align-items: center;
-  padding: 14px 16px; /* 패딩 증가 */
-  border-radius: 12px; /* 둥근 모서리 증가 */
+  padding: 12px 16px; /* 패딩 통일 */
+  border-radius: 10px; /* 둥근 모서리 통일 */
   color: var(--txt-gray01);
   text-decoration: none;
   transition: all 0.2s ease;
-  font-size: 16px; /* 폰트 크기 증가 */
-  font-weight: 500;
-  min-height: 52px; /* 최소 높이 증가 */
+  font-size: 15px; /* 폰트 크기 통일 */
+  font-weight: 500; /* 폰트 굵기 통일 */
+  min-height: 48px; /* 최소 높이 통일 */
   background-color: rgba(255, 255, 255, 0.03);
 }
 
