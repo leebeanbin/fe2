@@ -125,7 +125,7 @@ export default function Sidebar({
                 onOpenSearchModal?.();
               }}
             >
-              <SearchIcon className="sidebar_search_icon" size={18} />
+              <SearchIcon className="sidebar_search_icon" size={20} />
               {isOpen && <span>기사 히스토리 검색</span>}
             </motion.a>
           </div>
