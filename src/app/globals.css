@@ -179,6 +179,10 @@ button {
   position: relative;
   z-index: 10;
 
+  /* 오버플로우 제어 */
+  overflow-x: hidden; /* 좌우 스크롤 방지 */
+  overflow-y: auto; /* 상하 스크롤 허용 */
+
   /* 스타일 - ChatGPT 스타일 배경색 */
   background-color: var(--sidebar-bg);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
@@ -1474,7 +1478,8 @@ button {
   gap: 20px;
   height: 100%;
   padding: 16px 12px;
-  overflow: visible; /* 드롭다운이 보이도록 */
+  overflow-x: hidden; /* 좌우 스크롤 방지 */
+  overflow-y: visible; /* 드롭다운이 보이도록 */
 }
 
 /* 상단 영역 그리드 */
