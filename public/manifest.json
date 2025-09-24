@@ -1,0 +1,21 @@
+{
+  "name": "Fact-tory",
+  "short_name": "Fact-tory",
+  "description": "뉴스 편향성 분석 AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2a2e35",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "ko",
+  "categories": ["news", "education", "productivity"],
+  "icons": [
+    {
+      "src": "/img/web_favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1813,6 +1813,8 @@ button {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
+  overflow: hidden; /* 넘치는 내용 숨김 */
 }
 
 /* 히스토리 아이템 - 정교한 그리드 */
@@ -1826,6 +1828,13 @@ button {
   transition: all 0.2s ease;
   position: relative;
   min-height: 60px; /* 최소 높이 보장 */
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0; /* 그리드 아이템이 축소될 수 있도록 */
+  overflow: hidden; /* 넘치는 내용 숨김 */
+  max-width: calc(
+    var(--sidebar-width) - 24px
+  ); /* 사이드바 너비에서 패딩 제외 */
 }
 
 .history-item:hover {
@@ -1840,6 +1849,8 @@ button {
   padding: 0; /* 패딩 제거하여 그리드 내에서 정확한 배치 */
   border-radius: 0; /* 둥근 모서리 제거 */
   transition: none; /* 호버 효과는 부모에서 처리 */
+  overflow: hidden; /* 넘치는 내용 숨김 */
+  min-width: 0; /* 축소 가능하도록 */
 }
 
 .history-item-link:hover {
@@ -1852,6 +1863,7 @@ button {
   gap: 6px;
   min-width: 0;
   width: 100%; /* 전체 너비 사용 */
+  overflow: hidden; /* 넘치는 내용 숨김 */
 }
 
 .history-title-row {
@@ -1860,6 +1872,7 @@ button {
   justify-content: space-between;
   gap: 8px;
   min-width: 0;
+  overflow: hidden; /* 넘치는 내용 숨김 */
 }
 
 .history-title {
@@ -1897,6 +1910,8 @@ button {
   font-size: 12px;
   color: var(--txt-gray02);
   line-height: 1.3;
+  overflow: hidden; /* 넘치는 내용 숨김 */
+  min-width: 0; /* 축소 가능하도록 */
 }
 
 .history-date {
@@ -1911,6 +1926,10 @@ button {
 .history-source {
   font-weight: 400;
   opacity: 0.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0; /* 축소 가능하도록 */
 }
 
 .history-item-link > span::before {

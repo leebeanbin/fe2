@@ -1,0 +1,40 @@
+.button {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+
+  padding: 14px 91px;
+  background-color: #2a2e35;
+  border-radius: 60px;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 441px;
+  position: relative;
+}
+
+.button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.button::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.button[data-type='google']::before {
+  background-image: url('/icons/google.svg');
+}
+
+.button[data-type='kakao']::before {
+  background-image: url('/icons/kakao.svg');
+}
