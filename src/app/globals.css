@@ -1676,7 +1676,6 @@ button {
 }
 
 .sidebar_ico_wrapper {
-  grid-area: icon;
   display: flex;
   align-items: center; /* 수직 중앙 정렬 */
   justify-content: center; /* 중앙 정렬로 통일 */
@@ -1684,6 +1683,7 @@ button {
   height: 24px; /* 통일된 크기 */
   position: relative;
   flex-shrink: 0; /* 축소 방지 */
+  margin: 0 auto; /* 중앙 정렬 강화 */
 }
 
 .sidebar_ico {
@@ -1701,19 +1701,18 @@ button {
 }
 
 .sidebar_menu_text {
-  grid-area: text;
   font-size: 17px; /* 텍스트 크기 더 증가 */
   font-weight: 500;
   line-height: 1.3; /* 행간 조정 */
+  flex: 1; /* 남은 공간 차지 */
 }
 
 /* 메뉴 아이템 - 정교한 그리드 */
 .sidebar_depth > li > a {
-  display: grid;
-  grid-template-columns: 24px 1fr; /* 아이콘 영역 | 텍스트 영역 */
-  grid-template-areas: 'icon text';
-  gap: 12px;
+  display: flex; /* 그리드에서 플렉스로 변경 */
   align-items: center;
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  gap: 12px;
   padding: 0 18px; /* 검색 버튼과 동일한 좌우 패딩 */
   border-radius: 10px;
   color: var(--txt-gray01);
@@ -1996,18 +1995,18 @@ button {
 }
 
 .sidebar_bott > li > a {
-  display: grid;
-  grid-template-columns: 24px 1fr; /* 통일된 아이콘 영역 크기 */
-  gap: 12px;
+  display: flex; /* 그리드에서 플렉스로 변경 */
   align-items: center;
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  gap: 12px;
   padding: 0 18px; /* 검색 버튼과 동일한 좌우 패딩 */
-  border-radius: 10px; /* 둥근 모서리 통일 */
+  border-radius: 10px; /* 통일된 둥근 모서리 */
   color: var(--txt-gray01);
   text-decoration: none;
   transition: all 0.2s ease;
-  font-size: 15px; /* 폰트 크기 통일 */
-  font-weight: 500; /* 폰트 굵기 통일 */
-  min-height: 48px; /* 최소 높이 통일 */
+  font-size: 15px; /* 통일된 폰트 크기 */
+  font-weight: 500; /* 통일된 폰트 굵기 */
+  min-height: 48px; /* 통일된 최소 높이 */
   background-color: rgba(255, 255, 255, 0.03);
 }
 
