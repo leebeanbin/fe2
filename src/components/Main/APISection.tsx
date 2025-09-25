@@ -4,9 +4,21 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const apiCompanies = [
-  { name: 'Daum', logo: '/img/main/img_daum_logo.png' },
-  { name: 'Google', logo: '/img/main/img_google_logo.png' },
-  { name: 'Naver', logo: '/img/main/img_naver_logo.png' },
+  {
+    name: 'Daum',
+    logo: '/img/main/img_daum_logo.png',
+    url: 'https://news.daum.net',
+  },
+  {
+    name: 'Google',
+    logo: '/img/main/img_google_logo.png',
+    url: 'https://news.google.com',
+  },
+  {
+    name: 'Naver',
+    logo: '/img/main/img_naver_logo.png',
+    url: 'https://news.naver.com',
+  },
 ];
 
 export default function APISection() {
@@ -54,7 +66,9 @@ export default function APISection() {
               }}
             >
               <a
-                href="#"
+                href={company.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:bg-white/10"
               >
                 <div className="w-32 h-16 relative flex items-center justify-center">

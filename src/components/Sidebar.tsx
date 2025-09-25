@@ -114,20 +114,18 @@ export default function Sidebar({
               </motion.button>
             </div>
 
-            <motion.a
+            <motion.button
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.2 }}
-              href="#"
               className="sidebar_search"
-              onClick={e => {
-                e.preventDefault();
+              onClick={() => {
                 onOpenSearchModal?.();
               }}
             >
               <SearchIcon className="sidebar_search_icon" size={20} />
               {isOpen && <span>기사 히스토리 검색</span>}
-            </motion.a>
+            </motion.button>
           </div>
 
           {/* 메뉴 */}
@@ -138,7 +136,11 @@ export default function Sidebar({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
               >
-                <a href="/" className="sidebar_menu_link">
+                <a
+                  href="/"
+                  className="sidebar_menu_link"
+                  style={{ paddingRight: '1.5%' }}
+                >
                   <div className="sidebar_ico_wrapper">
                     <HomeIcon className="sidebar_ico" size={20} />
                   </div>
@@ -150,7 +152,11 @@ export default function Sidebar({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <a href="#" className="sidebar_menu_link">
+                <a
+                  href="/user-analytics"
+                  className="sidebar_menu_link"
+                  style={{ paddingRight: '1.5%' }}
+                >
                   <div className="sidebar_ico_wrapper">
                     <UserIcon className="sidebar_ico" size={20} />
                   </div>
@@ -180,7 +186,12 @@ export default function Sidebar({
                           transition={{ delay: 0.4 + index * 0.05 }}
                           className="history-item"
                         >
-                          <a href="#" className="history-item-link">
+                          <button
+                            className="history-item-link"
+                            onClick={() =>
+                              (window.location.href = `/analysis/${conversation.id}`)
+                            }
+                          >
                             <div className="history-content">
                               <div className="history-title-row">
                                 <span className="history-title">
@@ -205,7 +216,7 @@ export default function Sidebar({
                                 </span>
                               </div>
                             </div>
-                          </a>
+                          </button>
 
                           <div className="trailing-pair">
                             <div className="trailing">
@@ -317,7 +328,7 @@ export default function Sidebar({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <a href="#" className="sidebar_menu_link">
+              <a href="/about" className="sidebar_menu_link">
                 <div className="sidebar_ico_wrapper">
                   <AboutIcon className="sidebar_ico" size={20} />
                 </div>

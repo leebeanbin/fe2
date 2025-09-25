@@ -14,7 +14,7 @@ export function useSocialLogin(redirectBase: string) {
       setLoading(true);
       setError(null);
 
-      const redirect_uri = `${window.location.origin}${redirectBase}/${provider}`; // 현재 도메인과 포트 사용
+      const redirect_uri = `${redirectBase}/${provider}`; // http://localhost:3000/auth/callback/google
 
       const { data } = await api.get(`/api/v1/auth/social/${provider}/url`, {
         params: { redirect_uri },

@@ -217,9 +217,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   zIndex: 20,
                   transition: 'background-color 0.2s ease',
                 }}
-                onMouseEnter={e => (e.target.style.backgroundColor = '#f3f4f6')}
+                onMouseEnter={e =>
+                  ((e.target as HTMLElement).style.backgroundColor = '#f3f4f6')
+                }
                 onMouseLeave={e =>
-                  (e.target.style.backgroundColor = 'transparent')
+                  ((e.target as HTMLElement).style.backgroundColor =
+                    'transparent')
                 }
               >
                 <svg
@@ -381,23 +384,29 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             {searchQuery.trim()
                               ? result.title
                                   .split(searchQuery)
-                                  .map((part, index, array) => (
-                                    <span key={index}>
-                                      {part}
-                                      {index < array.length - 1 && (
-                                        <span
-                                          className="font-semibold px-1 rounded"
-                                          style={{
-                                            color: '#e265ff',
-                                            backgroundColor:
-                                              'rgba(226, 101, 255, 0.15)',
-                                          }}
-                                        >
-                                          {searchQuery}
-                                        </span>
-                                      )}
-                                    </span>
-                                  ))
+                                  .map(
+                                    (
+                                      part: string,
+                                      index: number,
+                                      array: string[]
+                                    ) => (
+                                      <span key={index}>
+                                        {part}
+                                        {index < array.length - 1 && (
+                                          <span
+                                            className="font-semibold px-1 rounded"
+                                            style={{
+                                              color: '#e265ff',
+                                              backgroundColor:
+                                                'rgba(226, 101, 255, 0.15)',
+                                            }}
+                                          >
+                                            {searchQuery}
+                                          </span>
+                                        )}
+                                      </span>
+                                    )
+                                  )
                               : result.title}
                           </h3>
 

@@ -25,8 +25,15 @@ export default function MainPage({
 
   const handleSearch = () => {
     if (searchValue.trim()) {
-      console.log('검색:', searchValue);
-      // 검색 로직 구현
+      // URL 검증
+      try {
+        new URL(searchValue);
+        // 분석 페이지로 이동
+        window.location.href = `/analyze?url=${encodeURIComponent(searchValue)}`;
+      } catch {
+        // URL이 아닌 경우 검색 모달 열기
+        onOpenSearchModal?.();
+      }
     }
   };
 
@@ -60,7 +67,16 @@ export default function MainPage({
     return `${diffInHours}시간 전`;
   };
 
-  const newsData = {
+  const newsData: Record<
+    string,
+    Array<{
+      title: string;
+      content: string;
+      image: string;
+      source: string;
+      date: string;
+    }>
+  > = {
     정치: [
       {
         title: "대통령실 '정치적 편향성 논란' 해명 발표",
@@ -258,7 +274,16 @@ export default function MainPage({
   };
 
   // 급상승 뉴스 데이터 (편향성 관련)
-  const trendingNewsData = {
+  const trendingNewsData: Record<
+    string,
+    Array<{
+      title: string;
+      content: string;
+      image: string;
+      source: string;
+      date: string;
+    }>
+  > = {
     정치: [
       {
         title: "야당 대표 발언 '극단적 표현' 사용 급증",
@@ -375,9 +400,9 @@ export default function MainPage({
         onClose={onCloseSearchModal || (() => {})}
       />
 
-      <div className="content-area">
+      <div className="content-area relative">
         {/* Section 01: 히어로 섹션 */}
-        <section className="section01">
+        <section className="section01 relative z-10">
           <div className="inner_size sec01_inner">
             <div className="sec01_left">
               <motion.h1
@@ -432,7 +457,7 @@ export default function MainPage({
         </section>
 
         {/* Section 02: API 파트너 */}
-        <section className="section02">
+        <section className="section02 relative z-10">
           <div className="inner_size sec02_inner">
             <motion.p
               className="sec02_tit"
@@ -452,17 +477,29 @@ export default function MainPage({
               viewport={{ once: true }}
             >
               <li>
-                <a href="#">
+                <a
+                  href="https://news.daum.net"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src="/img/main/img_daum_logo.png" alt="Daum" />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a
+                  href="https://news.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src="/img/main/img_google_logo.png" alt="Google" />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a
+                  href="https://news.naver.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src="/img/main/img_naver_logo.png" alt="Naver" />
                 </a>
               </li>
@@ -471,7 +508,7 @@ export default function MainPage({
         </section>
 
         {/* Section 03: 기능 소개 */}
-        <section className="section03">
+        <section className="section03 relative z-10">
           <div className="inner_size sec03_inner">
             <motion.p
               className="main_tit"
@@ -533,11 +570,14 @@ export default function MainPage({
                             word
                           )
                         )
-                        .reduce((prev, curr, i) => [
-                          prev,
-                          i === 0 ? '' : ' ',
-                          curr,
-                        ])}
+                        .reduce(
+                          (prev: (string | JSX.Element)[], curr, i) => [
+                            ...prev,
+                            i === 0 ? '' : ' ',
+                            curr,
+                          ],
+                          []
+                        )}
                     </li>
                     <li className="sec03_list_txt">{item.description}</li>
                   </ul>
@@ -549,7 +589,7 @@ export default function MainPage({
         </section>
 
         {/* Section 04: 실시간 인기 뉴스 */}
-        <section className="section04">
+        <section className="section04 relative z-10">
           <div className="inner_size sec04_inner">
             <motion.p
               className="main_tit"
@@ -575,15 +615,14 @@ export default function MainPage({
                     key={category}
                     className={activeCategory === category ? 'on' : ''}
                   >
-                    <a
-                      href="#"
-                      onClick={e => {
-                        e.preventDefault();
+                    <button
+                      onClick={() => {
                         setActiveCategory(category);
                       }}
+                      className="w-full text-left"
                     >
                       {category}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -723,7 +762,7 @@ export default function MainPage({
         </section>
 
         {/* Section 05: 푸터 */}
-        <section className="section05">
+        <section className="section05 relative z-10">
           <div className="inner_size sec05_inner">
             <motion.div
               className="footer_content"
@@ -742,13 +781,13 @@ export default function MainPage({
                     <h4>서비스</h4>
                     <ul>
                       <li>
-                        <a href="#">뉴스 분석</a>
+                        <a href="/analyze">뉴스 분석</a>
                       </li>
                       <li>
-                        <a href="#">편향성 검사</a>
+                        <a href="/analyze">편향성 검사</a>
                       </li>
                       <li>
-                        <a href="#">팩트체킹</a>
+                        <a href="/analyze">팩트체킹</a>
                       </li>
                     </ul>
                   </div>
@@ -756,13 +795,13 @@ export default function MainPage({
                     <h4>회사</h4>
                     <ul>
                       <li>
-                        <a href="#">회사소개</a>
+                        <a href="/about">회사소개</a>
                       </li>
                       <li>
-                        <a href="#">블로그</a>
+                        <a href="/about">블로그</a>
                       </li>
                       <li>
-                        <a href="#">채용</a>
+                        <a href="/about">채용</a>
                       </li>
                     </ul>
                   </div>
@@ -770,13 +809,13 @@ export default function MainPage({
                     <h4>지원</h4>
                     <ul>
                       <li>
-                        <a href="#">고객지원</a>
+                        <a href="/about">고객지원</a>
                       </li>
                       <li>
-                        <a href="#">API 문서</a>
+                        <a href="/about">API 문서</a>
                       </li>
                       <li>
-                        <a href="#">개발자 가이드</a>
+                        <a href="/about">개발자 가이드</a>
                       </li>
                     </ul>
                   </div>
@@ -787,11 +826,11 @@ export default function MainPage({
                   <p>&copy; 2025 Fact-tory. All rights reserved.</p>
                 </div>
                 <div className="footer_policy">
-                  <a href="#">개인정보처리방침</a>
+                  <a href="/about">개인정보처리방침</a>
                   <span>|</span>
-                  <a href="#">이용약관</a>
+                  <a href="/about">이용약관</a>
                   <span>|</span>
-                  <a href="#">쿠키정책</a>
+                  <a href="/about">쿠키정책</a>
                 </div>
               </div>
             </motion.div>
