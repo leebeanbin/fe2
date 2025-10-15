@@ -3,91 +3,79 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  onOpenSearchModal?: () => void;
+}
+
+export default function HeroSection({ onOpenSearchModal }: HeroSectionProps) {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = () => {
     if (searchValue.trim()) {
-      console.log('검색:', searchValue);
+      // URL 검증
+      try {
+        new URL(searchValue);
+        // 분석 페이지로 이동
+        window.location.href = `/analyze?url=${encodeURIComponent(searchValue)}`;
+      } catch {
+        // URL이 아닌 경우 검색 모달 열기
+        onOpenSearchModal?.();
+      }
     }
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="relative min-h-[760px] flex items-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
-      style={{
-        backgroundImage: `url('/img/main/img_sec01.png')`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right bottom',
-        backgroundSize: '702px',
-      }}
-    >
-      <div className="w-full max-w-6xl mx-auto px-8">
-        <div className="flex justify-between items-center h-full">
-          <div className="flex-1 max-w-2xl">
-            <motion.h1
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-white text-6xl font-bold leading-tight mb-10"
-            >
-              뉴스 편향성 분석 AI <br />
-              <span className="text-purple-400 text-7xl">Fact-tory</span>
-            </motion.h1>
+    <section className="section01 relative z-10">
+      <div className="inner_size sec01_inner">
+        <div className="sec01_left">
+          <motion.h1
+            className="sec01_left_tit"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            뉴스 편향성 분석 AI <br />
+            <span>Fact-tory</span>
+          </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-gray-400 text-lg leading-relaxed mb-16 font-light tracking-wide"
-            >
-              AI 기술로 뉴스 기사의 편향성을 분석하고 <br />
-              객관적인 정보를 제공하여 균형잡힌 뉴스 소비를 <br />
-              도와드리는 차세대 미디어 분석 플랫폼입니다.
-            </motion.p>
+          <motion.p
+            className="sec01_left_txt"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            AI가 뉴스의 편향성을 분석하고 객관적인 정보를 제공합니다. <br />
+            다양한 관점에서 뉴스를 바라보고 균형 잡힌 시각을 얻어보세요. <br />
+            팩트체킹과 신뢰할 수 있는 정보만을 선별해드립니다.
+          </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex items-center max-w-2xl"
-            >
-              <input
-                type="text"
-                value={searchValue}
-                onChange={e => setSearchValue(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleSearch()}
-                placeholder="기사 URL을 입력하면 AI가 분석해요."
-                className="flex-1 h-14 px-6 text-lg font-normal bg-white border-none rounded-l-full focus:outline-none focus:ring-0"
-              />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleSearch}
-                className="h-14 px-8 bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-lg font-bold rounded-r-full hover:from-purple-600 hover:to-indigo-700 transition-all duration-200 flex items-center gap-3"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-                검색하기
-              </motion.button>
-            </motion.div>
-          </div>
+          <motion.div
+            className="main_searhbox"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {/* 입력 필드 */}
+            <input
+              type="text"
+              placeholder="기사 URL을 입력하면 AI가 분석해요."
+              value={searchValue}
+              onChange={e => setSearchValue(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  handleSearch();
+                }
+              }}
+            />
+
+            {/* 오른쪽 동그란 별 버튼 */}
+            <button className="star_btn_circle" onClick={handleSearch}>
+              <span className="star_icon"></span>
+              <span className="star_text">분석하기</span>
+            </button>
+          </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
