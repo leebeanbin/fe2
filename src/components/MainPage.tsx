@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
-import SearchModal from './SearchModal';
-import HeroSection from './Main/HeroSection';
-import FeaturesSection from './Main/FeaturesSection';
-import NewsSection from './Main/NewsSection';
-import Footer from './Footer/Footer';
+import SearchModal from '@/components/SearchModal';
+import HeroSection from '@/components/Main/HeroSection';
+import FeaturesSection from '@/components/Main/FeaturesSection';
+import NewsSection from '@/components/Main/NewsSection';
+import Footer from '@/components/Footer/Footer';
 
 interface MainPageProps {
   onOpenSearchModal?: () => void;

@@ -2,15 +2,15 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import HomeIcon from './icons/HomeIcon';
-import UserIcon from './icons/UserIcon';
-import LoginIcon from './icons/LoginIcon';
-import AboutIcon from './icons/AboutIcon';
-import SearchIcon from './icons/SearchIcon';
-import DotsIcon from './icons/DotsIcon';
-import ShareIcon from './icons/ShareIcon';
-import DeleteIcon from './icons/DeleteIcon';
-import Logo from './Logo';
+import HomeIcon from '@/components/icons/HomeIcon';
+import UserIcon from '@/components/icons/UserIcon';
+import LoginIcon from '@/components/icons/LoginIcon';
+import AboutIcon from '@/components/icons/AboutIcon';
+import SearchIcon from '@/components/icons/SearchIcon';
+import DotsIcon from '@/components/icons/DotsIcon';
+import ShareIcon from '@/components/icons/ShareIcon';
+import DeleteIcon from '@/components/icons/DeleteIcon';
+import Logo from '@/components/Logo';
 
 interface SidebarProps {
   isOpen: boolean;

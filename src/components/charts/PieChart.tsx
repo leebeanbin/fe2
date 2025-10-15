@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import Chart from './chart-setup';
+import Chart from '@/components/charts/chart-setup';
 import type { Chart as ChartType, ChartData, ChartOptions } from 'chart.js';
 
 type PieData = ChartData<'pie', number[], string>;

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import Chart from './chart-setup';
+import Chart from '@/components/charts/chart-setup';
 
 export default function LineChart({
   data,
