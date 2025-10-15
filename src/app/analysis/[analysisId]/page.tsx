@@ -1,4 +1,4 @@
-import SidebarLayout from '@/components/Sidebar/SidebarLayout';
+import PageLayout from '@/components/layouts/PageLayout';
 import { getAnalysisResultOnServer } from '@/services/analysis';
 import { highlightText, highlightViewpoint } from '@/utils/highlight';
 import type { ApiEnvelope } from '@/types/analysis/analysis';
@@ -73,7 +73,7 @@ export default async function Page(props: PageProps) {
 
   if (!envelope?.success || !envelope.data) notFound();
 
-  const { article, analysis, charts, relatedVideos } = envelope.data;
+  const { article, analysis, relatedVideos } = envelope.data;
 
   const BIAS_LABEL: Record<'conservative' | 'neutral' | 'progressive', string> =
     {
@@ -98,7 +98,7 @@ export default async function Page(props: PageProps) {
   const kwList = group?.keyword ? [group.keyword] : [];
 
   return (
-    <SidebarLayout>
+    <PageLayout>
       <div
         className="min-h-screen"
         style={{
@@ -722,6 +722,6 @@ export default async function Page(props: PageProps) {
           </div>
         </div>
       </div>
-    </SidebarLayout>
+    </PageLayout>
   );
 }

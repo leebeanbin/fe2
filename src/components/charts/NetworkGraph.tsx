@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { Network, Node, Edge } from 'vis-network';
+import { Network } from 'vis-network';
 
 type NodeInput = {
   id: string | number;

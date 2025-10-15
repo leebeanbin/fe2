@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter, useSearchParams } from 'next/navigation';
-import SidebarLayout from '@/components/Sidebar/SidebarLayout';
+import PageLayout from '@/components/layouts/PageLayout';
 
 function AnalyzingContent() {
   const router = useRouter();
@@ -93,7 +93,7 @@ function AnalyzingContent() {
   };
 
   return (
-    <SidebarLayout>
+    <PageLayout>
       <div className="content-area">
         {/* Section 01: 분석중 헤더 */}
         <section className="section01">
@@ -279,7 +279,7 @@ function AnalyzingContent() {
           </div>
         </section>
       </div>
-    </SidebarLayout>
+    </PageLayout>
   );
 }
 

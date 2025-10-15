@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import SidebarLayout from '@/components/Sidebar/SidebarLayout';
+import PageLayout from '@/components/layouts/PageLayout';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AnalyzePage() {
   const [url, setUrl] = useState('');
@@ -53,7 +54,7 @@ export default function AnalyzePage() {
   ];
 
   return (
-    <SidebarLayout>
+    <PageLayout>
       <div className="content-area">
         {/* Section 01: 페이지 분석 헤더 */}
         <section className="section01">
@@ -232,7 +233,13 @@ export default function AnalyzePage() {
                   viewport={{ once: true }}
                 >
                   <div className="sec03_img">
-                    <img src={item.image} alt="" />
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <ul className="sec03_txtbox">
                     <li className="sec03_list_tit">
@@ -265,6 +272,6 @@ export default function AnalyzePage() {
           </div>
         </section>
       </div>
-    </SidebarLayout>
+    </PageLayout>
   );
 }

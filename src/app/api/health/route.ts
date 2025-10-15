@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const timestamp = new Date().toISOString();
 
   return NextResponse.json({
@@ -12,6 +12,6 @@ export async function GET(request: NextRequest) {
   });
 }
 
-export async function HEAD(request: NextRequest) {
+export async function HEAD() {
   return new NextResponse(null, { status: 200 });
 }

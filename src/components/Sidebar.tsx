@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import PlusIcon from './icons/PlusIcon';
-import ChatIcon from './icons/ChatIcon';
 import HomeIcon from './icons/HomeIcon';
 import UserIcon from './icons/UserIcon';
 import LoginIcon from './icons/LoginIcon';

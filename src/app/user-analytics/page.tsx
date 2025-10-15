@@ -1,7 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import SidebarLayout from '@/components/Sidebar/SidebarLayout';
+import PageLayout from '@/components/layouts/PageLayout';
 import Link from 'next/link';
 import {
   Chart as ChartJS,
@@ -40,13 +40,6 @@ interface AnalysisHistory {
   analyzedAt: string;
   status: 'completed' | 'processing' | 'failed';
   category?: string;
-}
-
-interface UserStats {
-  totalAnalyses: number;
-  favoriteCategory: string;
-  mostReadMedia: string;
-  avgBiasScore: number;
 }
 
 export default function UserAnalyticsPage() {
@@ -103,34 +96,6 @@ export default function UserAnalyticsPage() {
       category: 'IT',
     },
   ]);
-
-  const userStats: UserStats = {
-    totalAnalyses: analysisHistory.length,
-    favoriteCategory: '정치',
-    mostReadMedia: '중앙일보',
-    avgBiasScore: Math.round(
-      analysisHistory.reduce((sum, item) => sum + item.biasScore, 0) /
-        analysisHistory.length
-    ),
-  };
-
-  // 급정 시선 차트 데이터
-  const timeAnalysisData = [
-    { time: '2시간전', count: 3 },
-    { time: '1시간전', count: 7 },
-    { time: '3시간전', count: 2 },
-    { time: '4시간전', count: 5 },
-  ];
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ko-KR', {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  };
 
   const getBiasLabel = (bias: string) => {
     const labels = {
@@ -259,7 +224,7 @@ export default function UserAnalyticsPage() {
   };
 
   return (
-    <SidebarLayout>
+    <PageLayout>
       <div
         className="min-h-screen"
         style={{
@@ -1078,6 +1043,6 @@ export default function UserAnalyticsPage() {
           </motion.div>
         </div>
       </div>
-    </SidebarLayout>
+    </PageLayout>
   );
 }
