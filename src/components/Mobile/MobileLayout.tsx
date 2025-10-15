@@ -65,13 +65,11 @@ export default function MobileLayout({
           </button>
         </div>
       </header>
-
       {/* 메인 콘텐츠 영역 */}
       <main className="mobile-main">
         <div className="content-wrapper">{children}</div>
       </main>
-
-      {/* 하단 탭바 */}
+      하단 탭바
       <nav className="mobile-tabbar">
         {tabItems.map(item => (
           <Link

@@ -9,6 +9,9 @@ import UserIcon from './icons/UserIcon';
 import LoginIcon from './icons/LoginIcon';
 import AboutIcon from './icons/AboutIcon';
 import SearchIcon from './icons/SearchIcon';
+import DotsIcon from './icons/DotsIcon';
+import ShareIcon from './icons/ShareIcon';
+import DeleteIcon from './icons/DeleteIcon';
 import Logo from './Logo';
 
 interface SidebarProps {
@@ -136,11 +139,7 @@ export default function Sidebar({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
               >
-                <a
-                  href="/"
-                  className="sidebar_menu_link"
-                  style={{ paddingRight: '1.5%' }}
-                >
+                <a href="/" className="sidebar_menu_link">
                   <div className="sidebar_ico_wrapper">
                     <HomeIcon className="sidebar_ico" size={20} />
                   </div>
@@ -152,11 +151,7 @@ export default function Sidebar({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <a
-                  href="/user-analytics"
-                  className="sidebar_menu_link"
-                  style={{ paddingRight: '1.5%' }}
-                >
+                <a href="/user-analytics" className="sidebar_menu_link">
                   <div className="sidebar_ico_wrapper">
                     <UserIcon className="sidebar_ico" size={20} />
                   </div>
@@ -233,16 +228,7 @@ export default function Sidebar({
                                   whileHover={{ scale: 1.1 }}
                                   whileTap={{ scale: 0.9 }}
                                 >
-                                  <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                  >
-                                    <path d="M15.498 8.50159C16.3254 8.50159 16.9959 9.17228 16.9961 9.99963C16.9961 10.8271 16.3256 11.4987 15.498 11.4987C14.6705 11.4987 14 10.8271 14 9.99963C14.0002 9.17228 14.6706 8.50159 15.498 8.50159Z" />
-                                    <path d="M4.49805 8.50159C5.32544 8.50159 5.99689 9.17228 5.99707 9.99963C5.99707 10.8271 5.32555 11.4987 4.49805 11.4987C3.67069 11.4985 3 10.827 3 9.99963C3.00018 9.17239 3.6708 8.50176 4.49805 8.50159Z" />
-                                    <path d="M10.0003 8.50159C10.8276 8.50176 11.4982 9.17239 11.4984 9.99963C11.4984 10.827 10.8277 11.4985 10.0003 11.4987C9.17283 11.4987 8.50131 10.8271 8.50131 9.99963C8.50149 9.17228 9.17294 8.50159 10.0003 8.50159Z" />
-                                  </svg>
+                                  <DotsIcon size={16} />
                                 </motion.button>
 
                                 {openDropdown === conversation.id && (
@@ -261,37 +247,14 @@ export default function Sidebar({
                                       className="dropdown-item"
                                       onClick={() => setOpenDropdown(null)}
                                     >
-                                      <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                      >
-                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                                        <polyline points="16,6 12,2 8,6" />
-                                        <line x1="12" y1="2" x2="12" y2="15" />
-                                      </svg>
+                                      <ShareIcon size={16} />
                                       공유
                                     </button>
                                     <button
                                       className="dropdown-item delete"
                                       onClick={() => setOpenDropdown(null)}
                                     >
-                                      <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                      >
-                                        <polyline points="3,6 5,6 21,6" />
-                                        <path d="m19,6v14a2,2 0,0 1,-2,2H7a2,2 0,0 1,-2,-2V6m3,0V4a2,2 0,0 1,2,-2h4a2,2 0,0 1,2,2v2" />
-                                        <line x1="10" y1="11" x2="10" y2="17" />
-                                        <line x1="14" y1="11" x2="14" y2="17" />
-                                      </svg>
+                                      <DeleteIcon size={16} />
                                       삭제
                                     </button>
                                   </motion.div>

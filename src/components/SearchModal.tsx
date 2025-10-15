@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
+import { getAllNewsData, SearchNewsItem } from '@/data/newsData';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -10,7 +11,7 @@ interface SearchModalProps {
 
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchNewsItem[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -32,92 +33,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
     // 실제 뉴스 데이터를 기반으로 검색
     setTimeout(() => {
-      const allNewsData = [
-        // 정치 뉴스
-        {
-          id: 1,
-          title: "대통령실 '정치적 편향성 논란' 해명 발표",
-          content:
-            'AI 분석 결과 중립적 표현 대신 감정적 표현이 47% 증가한 것으로 나타남',
-          date: '2025-07-20',
-          source: '연합뉴스',
-          category: '정치',
-        },
-        {
-          id: 2,
-          title: "국정감사 질의서 '편향 표현' 논란 확산",
-          content:
-            '여야 의원들의 질의서에서 감정적 표현과 편향된 시각이 두드러지게 나타남',
-          date: '2025-07-20',
-          source: '중앙일보',
-          category: '정치',
-        },
-        {
-          id: 3,
-          title: '정당별 보도자료 편향성 점수 공개',
-          content:
-            'AI가 분석한 각 정당 보도자료의 편향성 점수가 처음으로 공개됨',
-          date: '2025-07-20',
-          source: '조선일보',
-          category: '정치',
-        },
-        // 경제 뉴스
-        {
-          id: 4,
-          title: "경제 정책 보도 '좌편향' vs '우편향' 분석 결과",
-          content:
-            '주요 언론사별 경제 정책 보도 편향성 분석에서 명확한 차이 발견',
-          date: '2025-07-20',
-          source: '매일경제',
-          category: '경제',
-        },
-        {
-          id: 5,
-          title: '부동산 정책 보도의 감정적 표현 사용 급증',
-          content:
-            '부동산 관련 뉴스에서 객관적 수치보다 감정적 표현이 68% 증가',
-          date: '2025-07-20',
-          source: '한국경제',
-          category: '경제',
-        },
-        // 사회 뉴스
-        {
-          id: 6,
-          title: '온라인 댓글 감정 분석으로 본 여론 동향',
-          content: 'SNS와 뉴스 댓글 분석 결과 부정적 감정 표현이 68% 증가',
-          date: '2025-07-20',
-          source: '동아일보',
-          category: '사회',
-        },
-        {
-          id: 7,
-          title: '의료진 파업 보도, 찬반 논조 극명한 대립',
-          content:
-            '의료진 집단행동에 대한 언론 보도에서 찬성과 반대 논조가 극명하게 갈림',
-          date: '2025-07-20',
-          source: '중앙일보',
-          category: '사회',
-        },
-        // 국제 뉴스
-        {
-          id: 8,
-          title: '미중 갈등 보도, 한국 언론의 편향성 분석',
-          content:
-            '미중 관계 보도에서 친미 vs 친중 성향 언론사별 차이가 뚜렷하게 나타남',
-          date: '2025-07-20',
-          source: '연합뉴스',
-          category: '국제',
-        },
-        {
-          id: 9,
-          title: '일본 관련 뉴스의 감정적 표현 사용 실태',
-          content:
-            '한일 관계 뉴스에서 감정적 표현이 객관적 사실 전달보다 우선시되는 경향',
-          date: '2025-07-20',
-          source: '조선일보',
-          category: '국제',
-        },
-      ];
+      const allNewsData = getAllNewsData();
 
       // 검색어가 포함된 뉴스 필터링
       const filteredResults = allNewsData.filter(
