@@ -32,7 +32,6 @@ export default function Home() {
       </AnimatePresence>
 
       <MainPage
-        onToggleSidebar={toggleSidebar}
         onOpenSearchModal={openSearchModal}
         isSearchModalOpen={isSearchModalOpen}
         onCloseSearchModal={closeSearchModal}

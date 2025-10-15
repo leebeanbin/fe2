@@ -229,7 +229,7 @@ export default function UserAnalyticsPage() {
     },
     animation: {
       duration: 1500,
-      easing: 'easeInOutQuart',
+      easing: 'easeInOutQuart' as const,
     },
   };
 

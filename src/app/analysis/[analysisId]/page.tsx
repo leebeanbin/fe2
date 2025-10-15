@@ -592,10 +592,9 @@ export default async function Page(props: PageProps) {
                   <div
                     className="text-sm leading-relaxed"
                     style={{ color: '#d0d0d0' }}
-                    dangerouslySetInnerHTML={{
-                      __html: highlightViewpoint(analysis.biasDescription),
-                    }}
-                  />
+                  >
+                    {highlightViewpoint(analysis.biasDescription)}
+                  </div>
                 </div>
               </div>
             </div>
